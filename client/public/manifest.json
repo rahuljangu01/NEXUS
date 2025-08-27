@@ -1,0 +1,25 @@
+{
+  "short_name": "Nexus",
+  "name": "Nexus - College Chat",
+  "description": "A real-time chat application to connect with your college peers.",
+  "icons": [
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "theme_color": "#1e293b",
+  "background_color": "#0d1117",
+  "scope": "/",
+  "orientation": "portrait"
+}
