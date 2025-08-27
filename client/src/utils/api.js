@@ -2,10 +2,10 @@
 
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
+// const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
 
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: "/api",
 });
 
 api.interceptors.request.use(
@@ -34,6 +34,7 @@ api.interceptors.response.use(
   }
 );
 
+// --- User & Connection Management ---
 export const searchUsers = async (query) => {
   const { data } = await api.get(`/users/search?q=${query}`);
   return data.users;
@@ -69,6 +70,7 @@ export const removeConnection = async (connectionId) => {
   return data;
 };
 
+// --- Profile & Account Management ---
 export const updateProfile = async (profileData) => {
     const { data } = await api.put('/auth/profile', profileData);
     return data;
@@ -79,6 +81,7 @@ export const changePassword = async (passwordData) => {
     return data;
 };
 
+// --- Messaging ---
 export const getMessages = async (userId) => {
   const { data } = await api.get(`/messages/${userId}`);
   return { userId, messages: data.messages };
@@ -104,6 +107,7 @@ export const deleteMultipleMessages = async (messageIds) => {
   return data;
 };
 
+// --- File Upload ---
 export const uploadProfilePhoto = async (file) => {
   const formData = new FormData();
   formData.append('file', file);
@@ -113,6 +117,7 @@ export const uploadProfilePhoto = async (file) => {
   return data.file;
 };
 
+// --- Groups ---
 export const discoverPublicGroups = async () => {
   const { data } = await api.get('/groups/discover');
   return data.groups;
@@ -128,6 +133,7 @@ export const addMembersToGroup = async (groupId, memberIds) => {
   return data;
 };
 
+// --- Status ---
 export const createStatus = async (statusData) => {
   const { data } = await api.post('/status/create', statusData);
   return data;
@@ -163,6 +169,7 @@ export const verifyAndRegisterUser = async (userData) => {
   return data;
 };
 
+// --- Call History ---
 export const logCall = async (callData) => {
   const { data } = await api.post('/calls/log', callData);
   return data;
