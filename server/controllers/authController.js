@@ -1,5 +1,3 @@
-// server/controllers/authController.js (FULL & COMPLETE CODE with Syntax Fix)
-
 const { validationResult } = require("express-validator");
 const User = require("../models/User");
 const generateToken = require("../utils/generateToken");
@@ -94,7 +92,7 @@ const login = async (req, res) => {
     
     user.isOnline = true;
     user.lastSeen = new Date();
-    await user.save();
+    await user.save({ validateBeforeSave: false }); // Avoid re-hashing password
     
     const token = generateToken(user._id);
     
@@ -184,7 +182,7 @@ const changePassword = async (req, res) => {
       success: true,
       message: "Password updated successfully!",
     });
-  } catch (error) { // <<< --- YAHAN PAR FIX HAI --- >>>
+  } catch (error) {
     console.error("Change password error:", error);
     res.status(500).json({ message: "Server error during password change" });
   }
